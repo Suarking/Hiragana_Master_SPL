@@ -1,5 +1,6 @@
 package com.spldev.hiraganamaster
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -25,6 +26,7 @@ import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
 @Composable
 fun HiraganaPracticeScreen(
     viewModel: HiraganaViewModel,
+    context: Context,
     onVerifyDrawing: () -> Unit, // Función para verificar el dibujo
     onNextCharacter: () -> Unit, // Función para cambiar al siguiente carácter
     onClearCanvas: () -> Unit // Función para limpiar el lienzo
