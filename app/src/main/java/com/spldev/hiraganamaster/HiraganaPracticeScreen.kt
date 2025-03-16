@@ -1,4 +1,4 @@
-package com.spldev.hiraganamaster
+package com.example.hiraganamaster.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -7,37 +7,31 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
-import com.google.mlkit.vision.digitalink.Ink
-import androidx.compose.ui.geometry.Offset
+import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
 
 @Composable
 fun HiraganaPracticeScreen(
-    currentCharacter: Pair<String, String>, // (Hiragana, Romaji)
-    strokes: MutableList<MutableList<Offset>>, // Lista mutable de trazos acumulados
-    currentStroke: MutableList<Offset>, // Trazo actual que se está dibujando
-    onVerifyDrawing: (Ink) -> Unit,
-    onNextCharacter: () -> Unit,
-    onClearCanvas: () -> Unit // Función para limpiar el lienzo manualmente
+    viewModel: HiraganaViewModel,
+    onVerifyDrawing: () -> Unit, // Función para verificar el dibujo
+    onNextCharacter: () -> Unit, // Función para cambiar al siguiente carácter
+    onClearCanvas: () -> Unit // Función para limpiar el lienzo
 ) {
-
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         // Mostrar el texto en romaji
         Text(
-            text = "Escribe: ${currentCharacter.second}", // Romaji (ejemplo: "a")
+            text = "Escribe: ${viewModel.currentCharacter.value.second}",
             style = MaterialTheme.typography.headlineMedium,
-            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
@@ -46,78 +40,60 @@ fun HiraganaPracticeScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp)
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(Color.LightGray)
                 .pointerInput(Unit) {
                     detectDragGestures(
                         onDragStart = { offset ->
-                            currentStroke.clear() // Limpia el trazo actual
-                            currentStroke.add(offset) // Inicia un nuevo trazo
+                            viewModel.currentStroke.clear()
+                            viewModel.currentStroke.add(offset)
                         },
                         onDrag = { change, _ ->
-                            currentStroke.add(change.position) // Añadir
+                            viewModel.currentStroke.add(change.position)
                         },
                         onDragEnd = {
-                            strokes.add(currentStroke.toMutableList()) // Guarda el trazo actual en la lista de trazos
-                            currentStroke.clear() // Resetea el trazo actual
+                            viewModel.strokes.add(viewModel.currentStroke.toMutableList())
+                            viewModel.currentStroke.clear()
                         }
                     )
-                }
-        ) {
-            // Dibuja todos los trazos acumulados
-            strokes.forEach { stroke ->
-                val path = Path().apply {
-                    moveTo(stroke.first().x, stroke.first().y)
-                    stroke.drop(1).forEach { point ->
-                        lineTo(point.x, point.y)
+                },
+            onDraw = {
+                // Dibujar todos los trazos acumulados
+                viewModel.strokes.forEach { stroke ->
+                    val path = Path().apply {
+                        moveTo(stroke.first().x, stroke.first().y)
+                        stroke.drop(1).forEach { point ->
+                            lineTo(point.x, point.y)
+                        }
                     }
+                    drawPath(path, color = Color.Black, style = Stroke(width = 5f))
                 }
-                drawPath(path, color = Color.Black, style = Stroke(width = 5f))
-            }
 
-            // Dibuja el trazo actual mientras se está dibujando
-            if (currentStroke.isNotEmpty()) {
-                val path = Path().apply {
-                    moveTo(currentStroke.first().x, currentStroke.first().y)
-                    currentStroke.drop(1).forEach { point ->
-                        lineTo(point.x, point.y)
+                // Dibujar el trazo actual mientras se está dibujando
+                if (viewModel.currentStroke.isNotEmpty()) {
+                    val path = Path().apply {
+                        moveTo(viewModel.currentStroke.first().x, viewModel.currentStroke.first().y)
+                        viewModel.currentStroke.drop(1).forEach { point ->
+                            lineTo(point.x, point.y)
+                        }
                     }
+                    drawPath(path, color = Color.Gray, style = Stroke(width = 5f))
                 }
-                drawPath(path, color = Color.Gray, style = Stroke(width = 5f))
             }
-        }
+        )
 
         // Botón para verificar el dibujo del usuario
-        Button(
-            onClick = {
-                val inkBuilder = Ink.builder()
-                strokes.forEach { stroke ->
-                    val strokeBuilder = Ink.Stroke.builder()
-                    stroke.forEach { point ->
-                        strokeBuilder.addPoint(Ink.Point.create(point.x, point.y))
-                    }
-                    inkBuilder.addStroke(strokeBuilder.build())
-                }
-                onVerifyDrawing(inkBuilder.build())
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
+        Button(onClick = onVerifyDrawing) {
             Text("Verificar")
         }
 
-        // Botón para limpiar el lienzo manualmente (opcional)
-        Button(
-            onClick = onClearCanvas,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Limpiar")
-        }
-        // Botón para pasar al siguiente carácter (opcional)
-        Button(
-            onClick = onNextCharacter,
-            modifier = Modifier.fillMaxWidth()
-        ) {
+        // Botón para cambiar al siguiente carácter (opcional)
+        Button(onClick = onNextCharacter) {
             Text("Siguiente")
         }
 
+        // Botón para limpiar el lienzo manualmente (opcional)
+        Button(onClick = onClearCanvas) {
+            Text("Limpiar")
+        }
     }
 }
