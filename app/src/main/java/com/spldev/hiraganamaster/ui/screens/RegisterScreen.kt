@@ -10,17 +10,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.spldev.hiraganamaster.viewmodel.LoginViewModel
+import com.spldev.hiraganamaster.viewmodel.RegisterViewModel
+import com.spldev.hiraganamaster.viewmodel.RegisterState
 
 @Composable
-fun LoginScreen(
-    viewModel: LoginViewModel,
-    onLoginSuccess: () -> Unit,
-    onNavigateToRegister: () -> Unit
+fun RegisterScreen(
+    viewModel: RegisterViewModel,
+    onRegisterSuccess: () -> Unit // Callback para manejar el éxito del registro
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val loginState by viewModel.loginState.collectAsState()
+    val registerState by viewModel.registerState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -30,7 +30,7 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Iniciar Sesión",
+            text = "Registro",
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 24.dp)
@@ -60,39 +60,28 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = { viewModel.login(email, password) },
+            onClick = { viewModel.register(email, password) },
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = Color.White
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Iniciar Sesión")
+            Text("Registrar")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        when (loginState) {
-            is LoginViewModel.LoginState.Loading -> CircularProgressIndicator()
-            is LoginViewModel.LoginState.Success -> {
+        when (registerState) {
+            is RegisterState.Loading -> CircularProgressIndicator()
+            is RegisterState.Success -> {
                 LaunchedEffect(Unit) {
-                    onLoginSuccess() // Navegar cuando el login sea exitoso
+                    onRegisterSuccess() // Navegar cuando el registro sea exitoso
                 }
-                Text(text = (loginState as LoginViewModel.LoginState.Success).message, color = Color.Green)
+                Text(text = (registerState as RegisterState.Success).message, color = Color.Green)
             }
-            is LoginViewModel.LoginState.Error -> Text(text = (loginState as LoginViewModel.LoginState.Error).error, color = Color.Red)
+            is RegisterState.Error -> Text(text = (registerState as RegisterState.Error).error, color = Color.Red)
             else -> {}
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        TextButton(
-            onClick = onNavigateToRegister,
-            colors = ButtonDefaults.textButtonColors(
-                contentColor = MaterialTheme.colorScheme.primary
-            )
-        ) {
-            Text("¿No tienes cuenta? Regístrate aquí")
         }
     }
 }
