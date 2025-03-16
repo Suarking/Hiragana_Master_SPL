@@ -9,7 +9,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -65,7 +64,7 @@ fun HiraganaPracticeScreen(
                             lineTo(point.x, point.y)
                         }
                     }
-                    drawPath(path, color = Color.Black, style = Stroke(width = 5f))
+                    drawPath(path, color = Color.Black, style = Stroke(width = 15f))
                 }
 
                 // Dibujar el trazo actual mientras se está dibujando
@@ -76,7 +75,7 @@ fun HiraganaPracticeScreen(
                             lineTo(point.x, point.y)
                         }
                     }
-                    drawPath(path, color = Color.Gray, style = Stroke(width = 5f))
+                    drawPath(path, color = Color.Gray, style = Stroke(width = 25f))
                 }
             }
         )
