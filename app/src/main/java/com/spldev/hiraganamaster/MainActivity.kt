@@ -65,7 +65,11 @@ fun AppNavigation(
         composable("register") {
             RegisterScreen(
                 viewModel = registerViewModel,
+                loginViewModel = loginViewModel,
                 onRegisterSuccess = {
+                    navController.navigate("login") // Navegar a la pantalla de login después del registro exitoso.
+                },
+                onNavigateToLogin = {
                     navController.navigate("login") // Navegar a la pantalla de login después del registro exitoso.
                 }
             )
@@ -76,10 +80,10 @@ fun AppNavigation(
                 viewModel = hiraganaViewModel,
                 onLogout = {
                     FirebaseAuth.getInstance().signOut() // Cerrar sesión en Firebase
-                    loginViewModel.resetLoginState() // Restablecer el estado del login
                     navController.navigate("login") {
                         popUpTo(navController.graph.startDestinationId) { inclusive = true }
                     }
+                    loginViewModel.resetLoginState() // Restablecer el estado del login
                 },
                 onVerifyDrawing = {
                     val inkBuilder = com.google.mlkit.vision.digitalink.Ink.builder()

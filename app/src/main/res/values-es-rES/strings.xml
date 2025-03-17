@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Hiragana Master</string>
+    <string name="text_placeholder_mail">correo@ejemplo.com</string>
+    <string name="text_placeholder_password">******</string>
+    <string name="text_button_sign_in">Iniciar Sesión</string>
+    <string name="text_button_register">¿No tienes cuenta? Regístrate aquí</string>
+    <string name="text_placeholder_password_register">******</string>
+    <string name="text_button_sign_up">Registrar Usuario</string>
     <string name="button_verify">Verificar</string>
     <string name="button_next">Siguiente</string>
     <string name="button_clear">Limpiar</string>
     <string name="title_write">Cómo escribimos...</string>
+    <string name="title_login">Iniciar Sesión</string>
+    <string name="text_hint_mail">Correo Electrónico</string>
+    <string name="text_hint_password">Contraseña</string>
+    <string name="title_register">Registro</string>
+    <string name="text_hint_mail_register">Correo Electrónico</string>
+    <string name="text_hint_password_register">Contraseña</string>
+    <string name="text_placeholder_mail_register">correo@ejemplo.com</string>
 </resources>

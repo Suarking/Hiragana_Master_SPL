@@ -1,11 +1,30 @@
 <resources>
     <string name="app_name">Hiragana Master</string>
 
+    <!--LOGIN SCREEN-->
+    <string name="title_login">Login</string>
+    <string name="text_hint_mail">E-Mail</string>
+    <string name="text_hint_password">Password</string>
+    <string name="text_placeholder_mail">mail@example.com</string>
+    <string name="text_placeholder_password">******</string>
+    <string name="text_button_sign_in">Sign In</string>
+    <string name="text_button_register">Don\'t you have an account? Sign up here</string>
+
+    <!--REGISTER SCREEN-->
+    <string name="title_register">Register</string>
+    <string name="text_hint_mail_register">E-Mail</string>
+    <string name="text_hint_password_register">Password</string>
+    <string name="text_placeholder_mail_register">mail@example.com</string>
+    <string name="text_placeholder_password_register">******</string>
+    <string name="text_button_sign_up">Sign Up</string>
+
     <!--GAME SCREEN-->
     <string name="button_verify">Check</string>
     <string name="button_next">Next</string>
     <string name="button_clear">Clear</string>
     <string name="title_write">How can we write…</string>
+
+
 
 
 </resources>

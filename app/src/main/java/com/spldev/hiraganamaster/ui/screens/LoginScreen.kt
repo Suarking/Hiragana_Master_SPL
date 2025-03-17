@@ -7,9 +7,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.spldev.hiraganamaster.R
 import com.spldev.hiraganamaster.viewmodel.LoginViewModel
 
 @Composable
@@ -30,7 +32,7 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Iniciar Sesión",
+            text = stringResource(R.string.title_login),
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 24.dp)
@@ -39,8 +41,8 @@ fun LoginScreen(
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Correo Electrónico") },
-            placeholder = { Text("ejemplo@correo.com") },
+            label = { Text(stringResource(R.string.text_hint_mail)) },
+            placeholder = { Text(stringResource(R.string.text_placeholder_mail))},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier.fillMaxWidth()
         )
@@ -50,8 +52,8 @@ fun LoginScreen(
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Contraseña") },
-            placeholder = { Text("********") },
+            label = { Text(stringResource(R.string.text_hint_password)) },
+            placeholder = { Text(stringResource(R.string.text_placeholder_password))  },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
@@ -67,7 +69,7 @@ fun LoginScreen(
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Iniciar Sesión")
+            Text(stringResource(R.string.text_button_sign_in))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -92,7 +94,7 @@ fun LoginScreen(
                 contentColor = MaterialTheme.colorScheme.primary
             )
         ) {
-            Text("¿No tienes cuenta? Regístrate aquí")
+            Text(stringResource(R.string.text_button_register))
         }
     }
 }
