@@ -37,6 +37,10 @@ class LoginViewModel @Inject constructor(
         _loginState.value = LoginState.Idle // Restablecer el estado a Idle
     }
 
+    fun logout(){
+        authRepository.logout()
+        _loginState.value = LoginState.Idle // Restablecer el estado a Idle
+    }
     sealed class LoginState {
         object Idle : LoginState()
         object Loading : LoginState()

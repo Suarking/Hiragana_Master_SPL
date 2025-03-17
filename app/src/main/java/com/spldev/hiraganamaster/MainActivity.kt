@@ -79,7 +79,9 @@ fun AppNavigation(
                     navController.navigate("login") // Navegar a la pantalla de login después del registro exitoso.
                 },
                 onNavigateToLogin = {
-                    navController.navigate("login") // Navegar a la pantalla de login después del registro exitoso.
+                    navController.navigate("login") {
+                        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                    }
                 }
             )
         }
@@ -88,7 +90,7 @@ fun AppNavigation(
             HiraganaPracticeScreen(
                 viewModel = hiraganaViewModel,
                 onLogout = {
-                    FirebaseAuth.getInstance().signOut() // Cerrar sesión en Firebase
+                   loginViewModel.logout()
                     navController.navigate("login") {
                         popUpTo(navController.graph.startDestinationId) { inclusive = true }
                     }
