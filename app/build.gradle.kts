@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.kapt") // Plugin para KAPT
+    id("com.google.dagger.hilt.android") // Plugin de Hilt
+
 
 }
 
@@ -53,6 +56,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.navigation.compose)
+
+    // Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.51") // Biblioteca principal de Hilt
+    kapt("com.google.dagger:hilt-android-compiler:2.51") // Compilador de anotaciones para Hilt
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,5 +73,6 @@ dependencies {
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+
 
 }

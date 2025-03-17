@@ -1,17 +1,20 @@
 package com.spldev.hiraganamaster.viewmodel
 
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuth
+import com.spldev.hiraganamaster.data.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegisterViewModel : ViewModel() {
+@HiltViewModel // Anotar el ViewModel para que Hilt pueda inyectar dependencias en él
+class RegisterViewModel @Inject constructor(
+    private val authRepository: AuthRepository // Inyectar el repositorio de autenticación
+) : ViewModel() {
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
-    // Estados para manejar el resultado del registro
     private val _registerState = MutableStateFlow<RegisterState>(RegisterState.Idle)
     val registerState: StateFlow<RegisterState> get() = _registerState
 
@@ -19,14 +22,13 @@ class RegisterViewModel : ViewModel() {
         _registerState.value = RegisterState.Loading
 
         viewModelScope.launch {
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        _registerState.value = RegisterState.Success("Registro exitoso")
-                    } else {
-                        _registerState.value = RegisterState.Error(task.exception?.message ?: "Error desconocido")
-                    }
+            authRepository.register(email, password) { success, errorMessage ->
+                if (success) {
+                    _registerState.value = RegisterState.Success("Registro exitoso")
+                } else {
+                    _registerState.value = RegisterState.Error(errorMessage ?: "Error desconocido")
                 }
+            }
         }
     }
 }

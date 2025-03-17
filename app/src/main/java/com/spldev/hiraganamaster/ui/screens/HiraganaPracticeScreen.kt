@@ -1,4 +1,4 @@
-package com.spldev.hiraganamaster
+package com.spldev.hiraganamaster.ui.screens
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
+import com.spldev.hiraganamaster.R
 import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
 
 @Composable

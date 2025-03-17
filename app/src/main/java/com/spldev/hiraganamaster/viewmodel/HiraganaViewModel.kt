@@ -16,9 +16,11 @@ import com.google.mlkit.vision.digitalink.DigitalInkRecognizer
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizerOptions
 import com.google.mlkit.vision.digitalink.Ink
 import com.spldev.hiraganamaster.data.HiraganaData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HiraganaViewModel : ViewModel() {
-
+@HiltViewModel
+class HiraganaViewModel @Inject constructor() : ViewModel() {
     private lateinit var recognizer: DigitalInkRecognizer
 
     // Estado para el carácter actual (hiragana y romaji)

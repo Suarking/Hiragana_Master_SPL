@@ -1,20 +1,22 @@
 package com.spldev.hiraganamaster.viewmodel
 
+
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
+import com.spldev.hiraganamaster.data.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+@HiltViewModel // Anotar el ViewModel para que Hilt pueda inyectar dependencias en él
+class LoginViewModel @Inject constructor(
+    private val authRepository: AuthRepository // Inyectar el repositorio de autenticación
+) : ViewModel() {
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
-    // Estados para manejar el resultado del login
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
     val loginState: StateFlow<LoginState> get() = _loginState
 
     fun login(email: String, password: String) {
-        // Validar campos vacíos
         if (email.isBlank() || password.isBlank()) {
             _loginState.value = LoginState.Error("El correo y la contraseña no pueden estar vacíos")
             return
@@ -22,26 +24,23 @@ class LoginViewModel : ViewModel() {
 
         _loginState.value = LoginState.Loading
 
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _loginState.value = LoginState.Success("Login exitoso")
-                } else {
-                    _loginState.value = LoginState.Error(task.exception?.message ?: "Error desconocido")
-                }
+        authRepository.login(email, password) { success, errorMessage ->
+            if (success) {
+                _loginState.value = LoginState.Success("Login exitoso")
+            } else {
+                _loginState.value = LoginState.Error(errorMessage ?: "Error desconocido")
             }
+        }
     }
 
     fun resetLoginState() {
         _loginState.value = LoginState.Idle // Restablecer el estado a Idle
     }
 
-
-    // Clase sellada para representar los diferentes estados del login
     sealed class LoginState {
-        object Idle : LoginState() // Estado inicial
-        object Loading : LoginState() // Estado de carga
-        data class Success(val message: String) : LoginState() // Estado de éxito
-        data class Error(val error: String) : LoginState() // Estado de error
+        object Idle : LoginState()
+        object Loading : LoginState()
+        data class Success(val message: String) : LoginState()
+        data class Error(val error: String) : LoginState()
     }
 }

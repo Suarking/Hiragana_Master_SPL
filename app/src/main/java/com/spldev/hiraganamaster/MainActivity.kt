@@ -4,27 +4,36 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.mlkit.vision.digitalink.Ink
+import com.spldev.hiraganamaster.ui.screens.HiraganaPracticeScreen
 import com.spldev.hiraganamaster.ui.screens.LoginScreen
 import com.spldev.hiraganamaster.ui.screens.RegisterScreen
 import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
 import com.spldev.hiraganamaster.viewmodel.LoginViewModel
 import com.spldev.hiraganamaster.viewmodel.RegisterViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.viewmodel.compose.viewModel
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val loginViewModel = LoginViewModel()
-        val registerViewModel = RegisterViewModel()
-        val hiraganaViewModel = HiraganaViewModel()
+
 
         setContent {
+
+            val loginViewModel: LoginViewModel by viewModels()
+            val registerViewModel: RegisterViewModel by viewModels()
+            val hiraganaViewModel: HiraganaViewModel = viewModel()
+
             AppNavigation(
                 loginViewModel,
                 registerViewModel,
@@ -86,12 +95,12 @@ fun AppNavigation(
                     loginViewModel.resetLoginState() // Restablecer el estado del login
                 },
                 onVerifyDrawing = {
-                    val inkBuilder = com.google.mlkit.vision.digitalink.Ink.builder()
+                    val inkBuilder = Ink.builder()
                     hiraganaViewModel.strokes.forEach { stroke ->
                         val strokeBuilder =
-                            com.google.mlkit.vision.digitalink.Ink.Stroke.builder()
+                            Ink.Stroke.builder()
                         stroke.forEach { point ->
-                            strokeBuilder.addPoint(com.google.mlkit.vision.digitalink.Ink.Point.create(point.x, point.y))
+                            strokeBuilder.addPoint(Ink.Point.create(point.x, point.y))
                         }
                         inkBuilder.addStroke(strokeBuilder.build())
                     }
