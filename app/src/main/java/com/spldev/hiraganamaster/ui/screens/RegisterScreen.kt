@@ -78,7 +78,7 @@ fun RegisterScreen(
             ),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(stringResource(R.string.text_button_register))
+            Text(stringResource(R.string.text_button_sign_up))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
