@@ -1,4 +1,4 @@
-package com.spldev.hiraganamaster.data
+package com.spldev.hiraganamaster.datasource
 
 object HiraganaData {
     val hiraganaList = listOf(

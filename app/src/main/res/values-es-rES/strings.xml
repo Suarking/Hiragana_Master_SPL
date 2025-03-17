@@ -18,4 +18,8 @@
     <string name="text_hint_mail_register">Correo Electrónico</string>
     <string name="text_hint_password_register">Contraseña</string>
     <string name="text_placeholder_mail_register">correo@ejemplo.com</string>
+    <string name="logout_modal_title">Cerrar Sesión</string>
+    <string name="logout_modal_text">¿Quieres cerrar sesión?</string>
+    <string name="logout_modal_button_no">Sí</string>
+    <string name="logout_modal_button_yes">No</string>
 </resources>

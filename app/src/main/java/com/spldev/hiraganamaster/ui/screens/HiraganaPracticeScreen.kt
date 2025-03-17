@@ -157,19 +157,19 @@ fun HiraganaPracticeScreen(
     if (showLogoutDialog) {
         AlertDialog(
             onDismissRequest = { showLogoutDialog = false }, // Cerrar el diálogo si se cancela o se pulsa fuera del mismo.
-            title = { Text("Cerrar sesión") },
-            text = { Text("¿Estás seguro que quieres cerrar sesión?") },
+            title = { Text(stringResource(R.string.logout_modal_title)) },
+            text = { Text(stringResource(R.string.logout_modal_text)) },
             confirmButton = {
                 Button(onClick = {
                     FirebaseAuth.getInstance().signOut() // Cerrar sesión en Firebase
                     onLogout() // Navegar a la pantalla de login
                 }) {
-                    Text("Sí")
+                    Text(stringResource(R.string.logout_modal_button_yes))
                 }
             },
             dismissButton = {
                 Button(onClick = { showLogoutDialog = false }) {
-                    Text("No")
+                    Text(stringResource(R.string.logout_modal_button_no))
                 }
             }
         )

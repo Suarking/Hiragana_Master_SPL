@@ -2,7 +2,7 @@ package com.spldev.hiraganamaster.dagger
 
 
 import com.google.firebase.auth.FirebaseAuth
-import com.spldev.hiraganamaster.data.repository.AuthRepository
+import com.spldev.hiraganamaster.datasource.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

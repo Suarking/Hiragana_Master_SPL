@@ -15,7 +15,7 @@ import com.google.mlkit.vision.digitalink.DigitalInkRecognitionModelIdentifier
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizer
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizerOptions
 import com.google.mlkit.vision.digitalink.Ink
-import com.spldev.hiraganamaster.data.HiraganaData
+import com.spldev.hiraganamaster.datasource.HiraganaData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

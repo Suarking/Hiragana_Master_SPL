@@ -25,7 +25,10 @@
     <string name="title_write">How can we write…</string>
 
 
-    <!--GAME SCREEN-->
-
+    <!--LOGOUT MODAL-->
+    <string name="logout_modal_title">Logout</string>
+    <string name="logout_modal_text">Do you want to log out?</string>
+    <string name="logout_modal_button_no">Yes</string>
+    <string name="logout_modal_button_yes">No</string>
 
 </resources>
