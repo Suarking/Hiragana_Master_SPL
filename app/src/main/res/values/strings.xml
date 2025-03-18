@@ -18,6 +18,11 @@
     <string name="text_placeholder_password_register">******</string>
     <string name="text_button_sign_up">Sign Up</string>
 
+    <!--REGISTER SCREEN-->
+    <string name="selection_title">Game Settings</string>
+    <string name="selection_play_button">Play</string>
+
+
     <!--GAME SCREEN-->
     <string name="button_verify">Check</string>
     <string name="button_next">Next</string>
@@ -28,7 +33,11 @@
     <!--LOGOUT MODAL-->
     <string name="logout_modal_title">Logout</string>
     <string name="logout_modal_text">Do you want to log out?</string>
-    <string name="logout_modal_button_no">Yes</string>
-    <string name="logout_modal_button_yes">No</string>
+    <string name="logout_modal_button_no">No</string>
+    <string name="logout_modal_button_yes">Yes</string>
+
+    <!--BACK MODAL-->
+    <string name="back_modal_title">Exit</string>
+    <string name="back_modal_text">Do you want to go to selection screen?</string>
 
 </resources>

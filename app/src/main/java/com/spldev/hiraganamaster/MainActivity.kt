@@ -6,19 +6,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.google.mlkit.vision.digitalink.Ink
 import com.spldev.hiraganamaster.ui.screens.HiraganaPracticeScreen
 import com.spldev.hiraganamaster.ui.screens.LoginScreen
 import com.spldev.hiraganamaster.ui.screens.RegisterScreen
+import com.spldev.hiraganamaster.ui.screens.SelectionScreen
 import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
 import com.spldev.hiraganamaster.viewmodel.LoginViewModel
 import com.spldev.hiraganamaster.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -63,7 +63,7 @@ fun AppNavigation(
                 viewModel = loginViewModel,
                 onLoginSuccess = {
                     hiraganaViewModel.setupDigitalInkRecognition(context)
-                    navController.navigate("hiraganaPractice")
+                    navController.navigate("selection")
                 },
                 onNavigateToRegister = {
                     navController.navigate("register") // Navegar a la pantalla de registro.
@@ -86,15 +86,27 @@ fun AppNavigation(
             )
         }
 
-        composable("hiraganaPractice") {
-            HiraganaPracticeScreen(
-                viewModel = hiraganaViewModel,
+        composable("selection") {
+            SelectionScreen(
+                hiraganaViewModel = hiraganaViewModel,
+                onPlay = { navController.navigate("hiraganaPractice") },
                 onLogout = {
-                   loginViewModel.logout()
+                    loginViewModel.logout()
                     navController.navigate("login") {
                         popUpTo(navController.graph.startDestinationId) { inclusive = true }
                     }
                     loginViewModel.resetLoginState() // Restablecer el estado del login
+                }
+            )
+        }
+
+        composable("hiraganaPractice") {
+            HiraganaPracticeScreen(
+                viewModel = hiraganaViewModel,
+                onBack = {
+                    navController.navigate("selection") {
+                        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                    }
                 },
                 onVerifyDrawing = {
                     val inkBuilder = Ink.builder()

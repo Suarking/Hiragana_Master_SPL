@@ -7,6 +7,8 @@
     <string name="text_button_register">¿No tienes cuenta? Regístrate aquí</string>
     <string name="text_placeholder_password_register">******</string>
     <string name="text_button_sign_up">Registrar Usuario</string>
+    <string name="selection_title">Configuración</string>
+    <string name="selection_play_button">Jugar</string>
     <string name="button_verify">Verificar</string>
     <string name="button_next">Siguiente</string>
     <string name="button_clear">Limpiar</string>
@@ -20,6 +22,8 @@
     <string name="text_placeholder_mail_register">correo@ejemplo.com</string>
     <string name="logout_modal_title">Cerrar Sesión</string>
     <string name="logout_modal_text">¿Quieres cerrar sesión?</string>
-    <string name="logout_modal_button_no">Sí</string>
-    <string name="logout_modal_button_yes">No</string>
+    <string name="logout_modal_button_no">No</string>
+    <string name="logout_modal_button_yes">Sí</string>
+    <string name="back_modal_title">Salir</string>
+    <string name="back_modal_text">¿Quieres salir a la pantalla de selección?</string>
 </resources>

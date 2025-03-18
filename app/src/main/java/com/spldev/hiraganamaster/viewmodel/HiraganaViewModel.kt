@@ -16,6 +16,7 @@ import com.google.mlkit.vision.digitalink.DigitalInkRecognizer
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizerOptions
 import com.google.mlkit.vision.digitalink.Ink
 import com.spldev.hiraganamaster.datasource.HiraganaData
+import com.spldev.hiraganamaster.datasource.KatakanaData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -23,11 +24,23 @@ import javax.inject.Inject
 class HiraganaViewModel @Inject constructor() : ViewModel() {
     private lateinit var recognizer: DigitalInkRecognizer
 
-    // Estado para el carácter actual (hiragana y romaji)
-    val currentCharacter = mutableStateOf(HiraganaData.getallHiraganas()[(0 until 20).random()])
+    private var characterList: List<Pair<String, String>> = HiraganaData.getallHiraganas() // Lista inicial (Hiraganas)
 
-    // Lista de hiraganas y sus correspondientes romaji
-    private val hiraganaList = HiraganaData.getallHiraganas()
+    val currentCharacter = mutableStateOf(characterList.random()) // Estado del carácter actual
+
+    fun setCharacters(type: String) {
+        characterList = when (type) {
+            "Katakana" -> KatakanaData.getAllKatakanas()
+            else -> HiraganaData.getallHiraganas()
+        }
+        currentCharacter.value = characterList.random() // Actualizar el carácter actual según la selección
+    }
+
+    fun changeCharacter() {
+        currentCharacter.value = characterList.random()
+        clearCanvas()
+    }
+
 
     // Estado para los trazos acumulados (lista de listas de puntos)
     val strokes = mutableStateListOf<MutableList<Offset>>()
@@ -91,10 +104,6 @@ class HiraganaViewModel @Inject constructor() : ViewModel() {
             }
     }
 
-    fun changeCharacter() {
-        currentCharacter.value = hiraganaList.random()
-        clearCanvas()
-    }
 
     fun clearCanvas() {
         strokes.clear()
