@@ -13,9 +13,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.spldev.hiraganamaster.R
-import com.spldev.hiraganamaster.viewmodel.LoginViewModel
-import com.spldev.hiraganamaster.viewmodel.RegisterViewModel
-import com.spldev.hiraganamaster.viewmodel.RegisterState
+import com.spldev.hiraganamaster.ui.viewmodel.LoginViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.RegisterViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.RegisterState
 
 @Composable
 fun RegisterScreen(

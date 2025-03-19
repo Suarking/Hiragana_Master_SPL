@@ -1,5 +1,7 @@
 package com.spldev.hiraganamaster.ui.screens
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -7,12 +9,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.spldev.hiraganamaster.R
-import com.spldev.hiraganamaster.viewmodel.LoginViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.LoginViewModel
 
 @Composable
 fun LoginScreen(
@@ -23,6 +26,11 @@ fun LoginScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val loginState by viewModel.loginState.collectAsState()
+    val activity = (LocalContext.current as? Activity)
+
+    BackHandler {
+        activity?.finishAndRemoveTask()
+    }
 
     Column(
         modifier = Modifier

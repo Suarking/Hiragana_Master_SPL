@@ -1,4 +1,4 @@
-package com.spldev.hiraganamaster.datasource.repository
+package com.spldev.hiraganamaster.data.repository
 
 
 import com.google.firebase.auth.FirebaseAuth

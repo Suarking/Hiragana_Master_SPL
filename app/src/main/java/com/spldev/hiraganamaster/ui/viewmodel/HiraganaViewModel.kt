@@ -1,4 +1,4 @@
-package com.spldev.hiraganamaster.viewmodel
+package com.spldev.hiraganamaster.ui.viewmodel
 
 
 import android.content.Context
@@ -15,8 +15,8 @@ import com.google.mlkit.vision.digitalink.DigitalInkRecognitionModelIdentifier
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizer
 import com.google.mlkit.vision.digitalink.DigitalInkRecognizerOptions
 import com.google.mlkit.vision.digitalink.Ink
-import com.spldev.hiraganamaster.datasource.HiraganaData
-import com.spldev.hiraganamaster.datasource.KatakanaData
+import com.spldev.hiraganamaster.data.datasource.HiraganaData
+import com.spldev.hiraganamaster.data.datasource.KatakanaData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

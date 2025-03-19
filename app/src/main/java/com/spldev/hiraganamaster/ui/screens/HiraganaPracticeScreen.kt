@@ -33,9 +33,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.google.firebase.auth.FirebaseAuth
 import com.spldev.hiraganamaster.R
-import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.HiraganaViewModel
 
 @Composable
 fun HiraganaPracticeScreen(

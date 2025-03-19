@@ -15,9 +15,9 @@ import com.spldev.hiraganamaster.ui.screens.HiraganaPracticeScreen
 import com.spldev.hiraganamaster.ui.screens.LoginScreen
 import com.spldev.hiraganamaster.ui.screens.RegisterScreen
 import com.spldev.hiraganamaster.ui.screens.SelectionScreen
-import com.spldev.hiraganamaster.viewmodel.HiraganaViewModel
-import com.spldev.hiraganamaster.viewmodel.LoginViewModel
-import com.spldev.hiraganamaster.viewmodel.RegisterViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.HiraganaViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.LoginViewModel
+import com.spldev.hiraganamaster.ui.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
