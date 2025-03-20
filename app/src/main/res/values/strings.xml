@@ -17,6 +17,8 @@
     <string name="text_placeholder_mail_register">mail@example.com</string>
     <string name="text_placeholder_password_register">******</string>
     <string name="text_button_sign_up">Sign Up</string>
+    <string name="text_button_back_login">Back to login</string>
+
 
     <!--REGISTER SCREEN-->
     <string name="selection_title">Game Settings</string>

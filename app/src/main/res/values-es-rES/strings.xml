@@ -7,12 +7,13 @@
     <string name="text_button_register">¿No tienes cuenta? Regístrate aquí</string>
     <string name="text_placeholder_password_register">******</string>
     <string name="text_button_sign_up">Registrar Usuario</string>
+    <string name="text_button_back_login">Volver a Inicio de sesión</string>
     <string name="selection_title">Configuración</string>
     <string name="selection_play_button">Jugar</string>
     <string name="button_verify">Verificar</string>
     <string name="button_next">Siguiente</string>
     <string name="button_clear">Limpiar</string>
-    <string name="title_write">Cómo escribimos...</string>
+    <string name="title_write">Cómo escribimos…</string>
     <string name="title_login">Iniciar Sesión</string>
     <string name="text_hint_mail">Correo Electrónico</string>
     <string name="text_hint_password">Contraseña</string>
