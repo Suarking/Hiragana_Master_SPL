@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.mlkit.vision.digitalink.Ink
+import com.spldev.hiraganamaster.ui.screens.GuessTheKana
 import com.spldev.hiraganamaster.ui.screens.HiraganaPracticeScreen
 import com.spldev.hiraganamaster.ui.screens.LoginScreen
 import com.spldev.hiraganamaster.ui.screens.RegisterScreen
@@ -58,7 +59,12 @@ fun AppNavigation(
         composable("selection") {
             SelectionScreen(
                 hiraganaViewModel = hiraganaViewModel,
-                onPlay = { navController.navigate("hiraganaPractice") },
+                onPlayKanaPractice = {
+                    navController.navigate("hiraganaPractice")
+                },
+                onPlayGuessTheKana = {
+                    navController.navigate("guessTheKana")
+                },
                 onLogout = {
                     loginViewModel.logout()
                     navController.navigate("login") {
@@ -96,6 +102,10 @@ fun AppNavigation(
                     { hiraganaViewModel.changeCharacter() },
                 onClearCanvas =
                     { hiraganaViewModel.clearCanvas() })
+        }
+
+        composable("guessTheKana") {
+            GuessTheKana()
         }
     }
 }
