@@ -1,5 +1,7 @@
 package com.spldev.hiraganamaster.ui.screens
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,10 +10,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.spldev.hiraganamaster.MainActivity
 import com.spldev.hiraganamaster.R
 import com.spldev.hiraganamaster.common.composables.LogoHeader
 import com.spldev.hiraganamaster.ui.viewmodel.LoginViewModel
@@ -25,11 +29,17 @@ fun LoginScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val loginState by viewModel.loginState.collectAsState()
+    val context = LocalContext.current
 
     // Paleta de colores inspirada en Japón (rojo, blanco, negro y tonos naturales)
     val backgroundColor = Color(0xFFF8E1D4) // Color beige inspirado en papel japonés tradicional
     val accentColor = Color(0xFFB22222) // Rojo japonés (similar al rojo de los torii gates)
     val textColor = Color(0xFF2C2C2C) // Negro suave para texto
+
+    BackHandler {
+        // Cerrar la aplicación al presionar "Atrás"
+        (context as? Activity)?.finishAndRemoveTask()
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
