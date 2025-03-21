@@ -105,7 +105,7 @@ fun SelectionScreen(
                             colors = RadioButtonDefaults.colors(selectedColor = accentColor)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Hiragana", color = textColor)
+                        Text(text =stringResource(R.string.selection_hiragana_rb), color = textColor)
                     }
 
                     Row(
@@ -125,7 +125,7 @@ fun SelectionScreen(
                             colors=RadioButtonDefaults.colors(selectedColor=accentColor)
                         )
                         Spacer(modifier=Modifier.width(8.dp))
-                        Text(text="Katakana",color=textColor)
+                        Text(text=stringResource(R.string.selection_katakana_rb),color=textColor)
                     }
                 }
             }
@@ -168,7 +168,7 @@ fun SelectionScreen(
                             colors=RadioButtonDefaults.colors(selectedColor=accentColor)
                         )
                         Spacer(modifier=Modifier.width(8.dp))
-                        Text(text="Dibuja el Kana",color=textColor)
+                        Text(text=stringResource(R.string.selection_draw_rb),color=textColor)
                     }
 
                     Row(
@@ -188,7 +188,7 @@ fun SelectionScreen(
                             colors=RadioButtonDefaults.colors(selectedColor=accentColor)
                         )
                         Spacer(modifier=Modifier.width(8.dp))
-                        Text(text="Adivina el Romaji",color=textColor)
+                        Text(text=stringResource(R.string.selection_guess_rb),color=textColor)
                     }
                 }
             }
@@ -212,7 +212,7 @@ fun SelectionScreen(
                 shape=RoundedCornerShape(8.dp),
                 modifier=Modifier.fillMaxWidth()
             ) {
-                Text(text="Jugar")
+                Text(text=stringResource(R.string.selection_play_button))
             }
         }
     }

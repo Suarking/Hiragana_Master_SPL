@@ -22,9 +22,13 @@
     <string name="text_button_back_login">Back to login</string>
 
 
-    <!--REGISTER SCREEN-->
+    <!--SELECTION SCREEN-->
     <string name="selection_title">Game Settings</string>
     <string name="selection_play_button">Play</string>
+    <string name="selection_hiragana_rb">Hiragana</string>
+    <string name="selection_katakana_rb">Katakana</string>
+    <string name="selection_draw_rb">Draw the Kana</string>
+    <string name="selection_guess_rb">Guess the Romaji</string>
 
 
     <!--GAME SCREEN-->
