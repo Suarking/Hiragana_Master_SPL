@@ -9,6 +9,8 @@
     <string name="text_placeholder_password">******</string>
     <string name="text_button_sign_in">Sign In</string>
     <string name="text_button_register">Don\'t you have an account? Sign up here</string>
+    <string name="text_login_success">Logged successfully</string>
+
 
     <!--REGISTER SCREEN-->
     <string name="title_register">Register</string>

@@ -17,6 +17,7 @@
     <string name="title_login">Iniciar Sesión</string>
     <string name="text_hint_mail">Correo Electrónico</string>
     <string name="text_hint_password">Contraseña</string>
+    <string name="text_login_success">Sesión iniciada correctamente</string>
     <string name="title_register">Registro</string>
     <string name="text_hint_mail_register">Correo Electrónico</string>
     <string name="text_hint_password_register">Contraseña</string>

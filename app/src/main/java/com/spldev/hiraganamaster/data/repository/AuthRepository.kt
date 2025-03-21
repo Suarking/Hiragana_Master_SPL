@@ -14,7 +14,7 @@ class AuthRepository @Inject constructor(
                 if (task.isSuccessful) {
                     onComplete(true, null)
                 } else {
-                    onComplete(false, task.exception?.message)
+                    onComplete(false, task.exception?.localizedMessage)
                 }
             }
     }
@@ -26,7 +26,7 @@ class AuthRepository @Inject constructor(
                 if (task.isSuccessful) {
                     onComplete(true, null)
                 } else {
-                    onComplete(false, task.exception?.message)
+                    onComplete(false, task.exception?.localizedMessage)
                 }
             }
     }
